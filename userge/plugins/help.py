@@ -55,7 +55,7 @@ REPO_X = InlineQueryResultArticle(
                         "**Here's how to setup USERGE-X** "),
                     url="https://github.com/code-rgb/USERGE-X",
                     description="Setup Your Own",
-                    thumb_url="https://i.imgur.com/1xsOo9o.png",
+                    thumb_url="https://telegra.ph/file/a4086aa8a93293aea8641.jpg",
                     reply_markup=InlineKeyboardMarkup(
                         [[
                             InlineKeyboardButton(                  
@@ -406,17 +406,17 @@ if userge.has_bot:
 
         if inline_query.from_user.id == Config.OWNER_ID or inline_query.from_user.id in Config.SUDO_USERS:
         
-            if string == "syntax":
+            if string == "chandan":
                 owner = [[
                         InlineKeyboardButton(
                         text="Contact", 
-                        url="https://t.me/deleteduser420"
+                        url="https://t.me/FLAMEPOSEIDON"
                         )
                 ]]
                 results.append(
                         InlineQueryResultPhoto(
-                            photo_url="https://coverfiles.alphacoders.com/123/123388.png",
-                            caption="Hey I solved **𝚂𝚢𝚗𝚝𝚊𝚡's ░ Σrr♢r**",
+                            photo_url="https://telegra.ph/file/c222750a69074225f7aae.jpg",
+                            caption="Hey I solved **CHANDU ░ POSEIDON**",
                             reply_markup=InlineKeyboardMarkup(owner)
                         )
                 )
@@ -808,9 +808,9 @@ if userge.has_bot:
             MAIN_MENU = InlineQueryResultArticle(
                         title="Main Menu",
                         input_message_content=InputTextMessageContent(" 𝐔𝐒𝐄𝐑𝐆𝐄-𝐗  𝗠𝗔𝗜𝗡 𝗠𝗘𝗡𝗨 "),
-                        url="https://github.com/code-rgb/USERGE-X",
+                        url="https://github.com/FLAMEPOSEIDON/USERGE-X",
                         description="Userge-X Main Menu",
-                        thumb_url="https://i.imgur.com/1xsOo9o.png",
+                        thumb_url="https://i.imgur.com/38dYAo2.jpg",
                         reply_markup=InlineKeyboardMarkup(main_menu_buttons())
                     )           
             results.append(MAIN_MENU) 
