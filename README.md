@@ -1,4 +1,4 @@
-<h2 align="center"><b>Owner: <a href="https://telegram.dog/FLAMEPOSEIDON">𝓒𝓗𝓐𝓝𝓓𝓐𝓝</a></b></h2>
+<h2 align="center"><b>User: <a href="https://telegram.dog/FLAMEPOSEIDON">𝓒𝓗𝓐𝓝𝓓𝓐𝓝</a></b></h2>
 
 
 <br>
