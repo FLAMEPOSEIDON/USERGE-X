@@ -22,14 +22,15 @@ Pillow==7.1.0
 psutil
 pybase64
 pymediainfo
-pyrogram>=1.0.7
+git+https://github.com/code-rgb/pyrogram.git
 pySmartDL
 python-dotenv
 pytz
+PyYAML
 rarfile
 removebg
 requests
-git+https://github.com/bisoncorps/search-engine-parser
+search-engine-parser==0.6.2
 selenium==3.141.0
 setuptools>=40.3.0
 spamwatch
