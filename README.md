@@ -26,6 +26,7 @@
 ![Repo Size](https://img.shields.io/github/repo-size/code-rgb/userge-x?style=flat-square)
 [![Sourcery](https://img.shields.io/badge/Sourcery-enabled-brightgreen?&style=flat-square)](https://sourcery.ai)
 [![CodeFactor](https://www.codefactor.io/repository/github/code-rgb/userge-x/badge?&style=flat-square)](https://www.codefactor.io/repository/github/code-rgb/userge-x)
+[![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/code-rgb/userge-x/?ref=repository-badge)
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/code-rgb/userge-x)
 [![Vercel](https://img.shields.io/badge/Vercel-click%20to%20open-black?&logo=vercel&style=flat-square)](http://userge-x.vercel.app/)
 [![Telegram](https://img.shields.io/badge/Support%20Group-USERGE--X-blue?&logo=telegram&style=social)](https://telegram.dog/x_xtests)
@@ -80,7 +81,16 @@
   * Then fill Dual Mode vars : `OWNER_ID`, `BOT_TOKEN` and `HU_STRING_SESSION`
   * Then fill [other **non-required** vars](https://telegra.ph/Heroku-Vars-for-USERGE-X-08-25) later
   * Finally **hit deploy** button
+  
+  
+## String Session
+**VAR :** `HU_STRING_SESSION`
 
+### HEROKU 
+- [open your app](https://dashboard.heroku.com/apps/) then go to **more** -> **run console** and paste the command below and click **run**.
+  > command: `bash genStr`
+### REPL
+- [**Generate on REPL**](https://stringsessiongen.leorio.repl.run/)
 
 ## Read more
 <details>
