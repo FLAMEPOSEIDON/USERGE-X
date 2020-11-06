@@ -1,9 +1,4 @@
-import json
-import os
-import random
-import re
-from math import ceil
-from typing import Any, Callable, Dict, List, Union
+import json import os import random import re from math import ceil from typing import Any, Callable, Dict, List, Union
 
 import requests
 import youtube_dl as ytdl
