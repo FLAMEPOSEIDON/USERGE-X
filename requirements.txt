@@ -1,5 +1,5 @@
 aiofiles
-aiohttp
+aiohttp==3.6.3
 bs4
 cowpy
 dnspython
@@ -22,7 +22,7 @@ Pillow==7.1.0
 psutil
 pybase64
 pymediainfo
-git+https://github.com/code-rgb/pyrogram.git
+git+https://github.com/code-rgb/pyrogram.git@verlock
 pySmartDL
 python-dotenv
 pytz
@@ -42,3 +42,4 @@ urbandict==0.5
 wget
 wikipedia
 youtube_dl>=2020.09.20
+covid

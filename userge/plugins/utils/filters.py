@@ -224,12 +224,13 @@ async def chat_filter(message: Message) -> None:
                 if getattr(message, media_type, None):
                     reply = True
             elif message.text:
-                input_text = message.text.strip()
+                l_name = name.lower()
+                input_text = message.text.strip().lower()
                 if (
-                    input_text == name
-                    or input_text.startswith(f"{name} ")
-                    or input_text.endswith(f" {name}")
-                    or f" {name} " in input_text
+                    input_text == l_name
+                    or input_text.startswith(f"{l_name} ")
+                    or input_text.endswith(f" {l_name}")
+                    or f" {l_name} " in input_text
                 ):
                     reply = True
             if reply:
