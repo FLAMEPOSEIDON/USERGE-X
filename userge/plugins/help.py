@@ -524,8 +524,6 @@ if userge.has_bot:
             inline_query.from_user.id in Config.OWNER_ID
             or inline_query.from_user.id in Config.SUDO_USERS
         ):
-
-        if inline_query.from_user.id == Config.OWNER_ID or inline_query.from_user.id in Config.SUDO_USERS:
         
             if string == "chandan":
                 owner = [[
