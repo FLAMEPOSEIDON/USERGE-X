@@ -20,6 +20,7 @@ from pyrogram.types import (
 )
 
 from userge import Config, Message, get_collection, get_version, userge, versions
+from userge.core.ext import RawClient
 from userge.utils import get_file_id_and_ref
 from userge.utils import parse_buttons as pb
 
@@ -77,6 +78,14 @@ ALIVE_IMGS = [
 ]
 
 
+def _get_mode() -> str:
+    if RawClient.DUAL_MODE:
+        return "↕️  **DUAL**"
+    if Config.BOT_TOKEN:
+        return "🤖  **BOT**"
+    return "👤  **USER**"
+
+
 async def _init() -> None:
     data = await SAVED_SETTINGS.find_one({"_id": "CURRENT_CLIENT"})
     if data:
@@ -94,7 +103,7 @@ async def helpme(
         out_str = (
             f"""⚒ <b><u>(<code>{len(plugins)}</code>) Plugin(s) Available</u></b>\n\n"""
         )
-        cat_plugins = userge.manager.get_all_plugins()
+        cat_plugins = userge.manager.get_plugins()
         for cat in sorted(cat_plugins):
             if cat == "plugins":
                 continue
@@ -148,7 +157,7 @@ if userge.has_bot:
 
     def check_owner(func):
         async def wrapper(_, c_q: CallbackQuery):
-            if c_q.from_user and c_q.from_user.id == Config.OWNER_ID:
+            if c_q.from_user and c_q.from_user.id in Config.OWNER_ID:
                 try:
                     await func(c_q)
                 except MessageNotModified:
@@ -159,7 +168,7 @@ if userge.has_bot:
                         show_alert=True,
                     )
             else:
-                user_dict = await userge.bot.get_user_dict(Config.OWNER_ID)
+                user_dict = await userge.bot.get_user_dict(Config.OWNER_ID[0])
                 await c_q.answer(
                     f"Only {user_dict['flname']} Can Access this...! Build Your USERGE-X",
                     show_alert=True,
@@ -507,7 +516,7 @@ if userge.has_bot:
         string_split = string.split()  # All lower and Split each word
 
         if (
-            inline_query.from_user.id == Config.OWNER_ID
+            inline_query.from_user.id in Config.OWNER_ID
             or inline_query.from_user.id in Config.SUDO_USERS
         ):
 
@@ -543,7 +552,7 @@ if userge.has_bot:
                     vid_title = x.get("title", None)
                     # upload_date = date_formatter(str(x.get('upload_date', None)))
                     vid_thumb = get_ytthumb(ytlink_code)
-                    buttons = ytdl_btn_generator(formats, ytlink_code)
+                    buttons = ytdl_btn_generator(formats, ytlink_code, inline_query.id)
                     caption_text = f"**{vid_title}**"
                     # caption_text += f"🔗 [Link]({link})  |  📅 : {upload_date}"
                     # caption_text += f"📹 : [{uploader}]({channel_url})"
@@ -694,7 +703,7 @@ if userge.has_bot:
  • 🔥 Pyrogram :  `v{versions.__pyro_version__}`
  • 🧬 𝑿 :  `v{get_version()}`
 
-    🕔 Uptime : {userge.uptime}
+{_get_mode()}  |  🕔: {userge.uptime}
 """
 
                 if not MEDIA_URL and Config.ALIVE_MEDIA:
