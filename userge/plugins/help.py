@@ -524,17 +524,16 @@ if userge.has_bot:
             inline_query.from_user.id in Config.OWNER_ID
             or inline_query.from_user.id in Config.SUDO_USERS
         ):
-        
+
             if string == "chandan":
-                owner = [[
+                owner = [
+                    [
                         InlineKeyboardButton(
-                        text="Contact", 
-                        url="https://t.me/FLAMEPOSEIDON"
+                            text="Contact", url="https://t.me/FLAMEPOSEIDON"
                         )
                     ]
                 ]
                 results.append(
-
                     InlineQueryResultPhoto(
                         photo_url="https://telegra.ph/file/c222750a69074225f7aae.jpg",
                         caption="Hey I solved **CHANDU ░ POSEIDON**",
@@ -1055,7 +1054,6 @@ if userge.has_bot:
                         )
                     )
             MAIN_MENU = InlineQueryResultArticle(
-
                 title="Main Menu",
                 input_message_content=InputTextMessageContent(" 𝐔𝐒𝐄𝐑𝐆𝐄-𝐗  𝗠𝗔𝗜𝗡 𝗠𝗘𝗡𝗨 "),
                 url="https://github.com/FLAMEPOSEIDON/USERGE-X",
