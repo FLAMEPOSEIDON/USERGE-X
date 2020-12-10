@@ -8,7 +8,7 @@ gitpython
 google-api-python-client
 google-auth-httplib2
 google-auth-oauthlib
-googletrans
+googletrans==3.1.0a0
 hachoir
 heroku3
 html-telegraph-poster
@@ -16,7 +16,7 @@ instaloader
 jikanpy
 motor
 natsort
-nekos.py
+git+https://github.com/Nekos-life/Async-nekos.life-wrapper
 oauth2client
 Pillow==7.1.0
 psutil

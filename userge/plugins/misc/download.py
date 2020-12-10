@@ -72,7 +72,7 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
         if message.process_is_canceled:
             downloader.stop()
             raise ProcessCanceled
-        total_length = downloader.filesize or 0
+        total_length = downloader.filesize if downloader.filesize else 0
         downloaded = downloader.get_dl_size()
         percentage = downloader.get_progress() * 100
         speed = downloader.get_speed(human=True)
@@ -122,9 +122,14 @@ async def tg_download(message: Message, to_download: Message) -> Tuple[str, int]
     """ download from tg file """
     await message.edit("`Downloading From TG...`")
     start_t = datetime.now()
+    custom_file_name = Config.DOWN_PATH
+    if message.filtered_input_str:
+        custom_file_name = os.path.join(
+            Config.DOWN_PATH, message.filtered_input_str.strip()
+        )
     dl_loc = await message.client.download_media(
         message=to_download,
-        file_name=Config.DOWN_PATH,
+        file_name=custom_file_name,
         progress=progress,
         progress_args=(message, "trying to download"),
     )
