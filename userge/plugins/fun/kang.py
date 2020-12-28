@@ -13,14 +13,14 @@ import os
 import random
 
 import emoji
-from bs4 import BeautifulSoup as bs
 from PIL import Image
 from pyrogram.errors import StickersetInvalid, YouBlockedUser
 from pyrogram.raw.functions.messages import GetStickerSet
 from pyrogram.raw.types import InputStickerSetShortName
 
 from userge import Config, Message, userge
-from userge.utils.helper import AioHttp
+
+# from userge.utils.helper import AioHttp
 
 
 @userge.on_cmd(
@@ -284,7 +284,7 @@ KANGING_STR = (
     "Mr.Steal Your Sticker is stealing this sticker... ",
 )
 
-
+"""
 # Based on:
 # https://github.com/AnimeKaizoku/SaitamaRobot/blob/10291ba0fc27f920e00f49bc61fcd52af0808e14/SaitamaRobot/modules/stickers.py#L42
 @userge.on_cmd(
@@ -295,7 +295,7 @@ KANGING_STR = (
     },
 )
 async def sticker_search(message: Message):
-    """search sticker packs"""
+    # search sticker packs
     reply = message.reply_to_message
     query_ = None
     if message.input_str:
@@ -322,3 +322,4 @@ async def sticker_search(message: Message):
     if not sticker_pack:
         sticker_pack = "`❌ Not Found!`"
     await message.edit((titlex + sticker_pack), disable_web_page_preview=True)
+"""

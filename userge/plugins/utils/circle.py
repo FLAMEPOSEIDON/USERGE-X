@@ -4,7 +4,7 @@
 
 
 import os
-import shutil
+from shutil import rmtree
 
 from pymediainfo import MediaInfo
 
@@ -31,23 +31,13 @@ async def video_note(message: Message):
     if not (reply.video or reply.animation or reply.audio):
         await message.err("Only videos, gifs and audio are Supported", del_in=10)
         return
-    if not os.path.exists(CACHE):
-        os.mkdir(CACHE)
+    if os.path.exists(CACHE):
+        rmtree(CACHE, ignore_errors=True)
+    os.mkdir(CACHE)
     await message.edit("`Processing ...`")
     if reply.video or reply.animation:
         note = await reply.download()
-        media_info = MediaInfo.parse(note)
-        for track in media_info.tracks:
-            if track.track_type == "Video":
-                aspect_ratio = track.display_aspect_ratio
-                height = track.height
-                width = track.width
-        if aspect_ratio != 1:
-            crop_by = width if (height > width) else height
-            await runcmd(f'ffmpeg -i {note} -vf "crop={crop_by}:{crop_by}" {PATH}')
-            os.remove(note)
-        else:
-            os.rename(note, PATH)
+        await crop_vid(note, PATH)
     else:
         thumb_loc = os.path.join(CACHE, "thumb.jpg")
         audio_loc = os.path.join(CACHE, "music.mp3")
@@ -68,4 +58,21 @@ async def video_note(message: Message):
     if os.path.exists(PATH):
         await message.client.send_video_note(message.chat.id, PATH)
     await message.delete()
-    shutil.rmtree(CACHE)
+    rmtree(CACHE, ignore_errors=True)
+
+
+async def crop_vid(input_vid: str, final_path: str):
+    media_info = MediaInfo.parse(input_vid)
+    for track in media_info.tracks:
+        if track.track_type == "Video":
+            aspect_ratio = track.display_aspect_ratio
+            height = track.height
+            width = track.width
+    if aspect_ratio != 1:
+        crop_by = width if (height > width) else height
+        await runcmd(
+            f'ffmpeg -i {input_vid} -vf "crop={crop_by}:{crop_by}" {final_path}'
+        )
+        os.remove(input_vid)
+    else:
+        os.rename(input_vid, final_path)

@@ -1,28 +1,26 @@
-# pylint: disable=missing-module-docstring
-#
-# Copyright (C) 2020 by UsergeTeam@Github, < https://github.com/UsergeTeam >.
-#
-# This file is part of < https://github.com/UsergeTeam/Userge > project,
-# and is released under the "GNU v3.0 License Agreement".
-# Please see < https://github.com/uaudith/Userge/blob/master/LICENSE >
-#
-# All rights reserved.
-
+from .aiohttp_helper import get_response
+from .botapi import XMediaTypes as xmedia
+from .botapi import xbot
+from .functions import (
+    check_owner,
+    cleanhtml,
+    deEmojify,
+    escape_markdown,
+    media_to_image,
+    mention_html,
+    mention_markdown,
+    rand_array,
+    rand_key,
+    thumb_from_audio,
+)
 from .progress import progress  # noqa
-from .sys_tools import SafeDict, get_import_path, secure_text, terminate # noqa
-from .tools import (get_file_id_and_ref,
-                    humanbytes,
-                    time_formatter,
-                    post_to_telegraph,
-                    runcmd,
-                    take_screen_shot,
-                    parse_buttons)
-from .functions import (deEmojify, 
-                        media_to_image,
-                        mention_markdown,
-                        mention_html,
-                        escape_markdown,
-                        cleanhtml,
-                        thumb_from_audio,
-                        rand_array,
-                        download_link)
+from .sys_tools import SafeDict, get_import_path, secure_text, terminate  # noqa
+from .tools import (
+    get_file_id_and_ref,
+    humanbytes,
+    parse_buttons,
+    post_to_telegraph,
+    runcmd,
+    take_screen_shot,
+    time_formatter,
+)

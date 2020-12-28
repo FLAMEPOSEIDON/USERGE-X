@@ -124,11 +124,11 @@ async def purgeme_(message: Message):
     if mid in del_list:
         del_list.remove(mid)
     del_list.reverse()
-    del_list = del_list[:number]
+    del_list_ = del_list[:number]
 
-    await userge.delete_messages(message.chat.id, message_ids=del_list)
+    await userge.delete_messages(message.chat.id, message_ids=del_list_)
 
     end_t = datetime.datetime.now()
     time_taken_s = (end_t - start_t).seconds
-    out = f"<u>purged</u> {len(del_list)} messages in {time_taken_s} seconds."
+    out = f"<u>purged</u> {len(del_list_)} messages in {time_taken_s} seconds."
     await message.edit(out, del_in=3)

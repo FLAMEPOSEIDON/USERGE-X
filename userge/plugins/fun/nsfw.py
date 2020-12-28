@@ -1,14 +1,8 @@
 from pyrogram import filters
-from pyrogram.errors import MessageNotModified
-from pyrogram.types import (
-    CallbackQuery,
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    InputMediaPhoto,
-)
+from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
 from userge import Config, userge
-from userge.utils import get_file_id_and_ref
+from userge.utils import get_file_id_and_ref, xbot, xmedia
 
 
 async def age_verification(msg):
@@ -35,7 +29,8 @@ if userge.has_bot:
             )
         await c_q.answer("Yes I'm 18+", show_alert=False)
         msg = await userge.bot.get_messages("useless_x", 19)
-        f_id, f_ref = get_file_id_and_ref(msg)
+        f_id = get_file_id_and_ref(msg)[0]
+
         buttons = [
             [
                 InlineKeyboardButton(
@@ -44,17 +39,31 @@ if userge.has_bot:
                 )
             ]
         ]
-        try:
-            await c_q.edit_message_media(
-                media=InputMediaPhoto(
-                    media=f_id,
-                    file_ref=f_ref,
+        await xbot.edit_inline_media(
+            c_q.inline_message_id,
+            media=(
+                await xmedia.InputMediaPhoto(
+                    file_id=f_id,
                     caption="Set <code>ALLOW_NSFW</code> = True in Heroku Vars to access this plugin",
-                ),
-                reply_markup=InlineKeyboardMarkup(buttons),
-            )
-        except MessageNotModified:
-            return
+                )
+            ),
+            reply_markup=InlineKeyboardMarkup(buttons),
+        )
+        # """
+        # try:
+
+        #     await c_q.edit_message_media(
+        #         media=InputMediaPhoto(
+        #             media=f_id,
+        #             file_ref=f_ref,
+        #             caption="Set <code>ALLOW_NSFW</code> = True in Heroku Vars to access this plugin",
+        #         ),
+        #         reply_markup=InlineKeyboardMarkup(buttons),
+        #     )
+
+        # except MessageNotModified:
+        #     pass
+        # """
 
     @userge.bot.on_callback_query(filters.regex(pattern=r"^age_verification_false"))
     async def age_verification_false(_, c_q: CallbackQuery):
@@ -66,8 +75,9 @@ if userge.has_bot:
             )
         await c_q.answer("No I'm Not", show_alert=False)
         msg = await userge.bot.get_messages("useless_x", 20)
-        f_id, f_ref = get_file_id_and_ref(msg)
+        f_id = get_file_id_and_ref(msg)[0]
         img_text = "GO AWAY KID !"
+
         buttons = [
             [
                 InlineKeyboardButton(
@@ -76,13 +86,21 @@ if userge.has_bot:
                 )
             ]
         ]
-        try:
-            await c_q.edit_message_media(
-                media=InputMediaPhoto(media=f_id, file_ref=f_ref, caption=img_text),
-                reply_markup=InlineKeyboardMarkup(buttons),
-            )
-        except MessageNotModified:
-            return
+        await xbot.edit_inline_media(
+            c_q.inline_message_id,
+            media=(await xmedia.InputMediaPhoto(file_id=f_id, caption=img_text)),
+            reply_markup=InlineKeyboardMarkup(buttons),
+        )
+
+        # """
+        # try:
+        #     await c_q.edit_message_media(
+        #         media=InputMediaPhoto(media=f_id, file_ref=f_ref, caption=img_text),
+        #         reply_markup=InlineKeyboardMarkup(buttons),
+        #     )
+        # except MessageNotModified:
+        #     return
+        # """
 
     @userge.bot.on_callback_query(filters.regex(pattern=r"^chg_of_decision_"))
     async def chg_of_decision_(_, c_q: CallbackQuery):
@@ -94,8 +112,9 @@ if userge.has_bot:
             )
         await c_q.answer("Unsure", show_alert=False)
         msg = await userge.bot.get_messages("useless_x", 21)
-        f_id, f_ref = get_file_id_and_ref(msg)
-        img_text = "**ARE YOU OLD ENOUGH FOR THIS ?**"
+        f_id = get_file_id_and_ref(msg)[0]
+        img_text = "<b>ARE YOU OLD ENOUGH FOR THIS ?</b>"
+
         buttons = [
             [
                 InlineKeyboardButton(
@@ -106,10 +125,17 @@ if userge.has_bot:
                 ),
             ]
         ]
-        try:
-            await c_q.edit_message_media(
-                media=InputMediaPhoto(media=f_id, file_ref=f_ref, caption=img_text),
-                reply_markup=InlineKeyboardMarkup(buttons),
-            )
-        except MessageNotModified:
-            return
+        await xbot.edit_inline_media(
+            c_q.inline_message_id,
+            media=(await xmedia.InputMediaPhoto(file_id=f_id, caption=img_text)),
+            reply_markup=InlineKeyboardMarkup(buttons),
+        )
+        # """
+        # try:
+        #     await c_q.edit_message_media(
+        #         media=InputMediaPhoto(media=f_id, file_ref=f_ref, caption=img_text),
+        #         reply_markup=InlineKeyboardMarkup(buttons),
+        #     )
+        # except MessageNotModified:
+        #     pass
+        # """
