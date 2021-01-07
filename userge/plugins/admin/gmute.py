@@ -81,9 +81,7 @@ async def gmute_user(msg: Message):
             f"**User ID:** `{user_id}`\n**Reason:** `{reason}`"
         ),
     )
-    chats = (
-        [msg.chat] if msg.client.is_bot else await msg.client.get_common_chats(user_id)
-    )
+    chats = await userge.get_common_chats(user_id)
     for chat in chats:
         try:
             await chat.restrict_member(user_id, ChatPermissions())
@@ -128,16 +126,14 @@ async def ungmute_user(msg: Message):
         await msg.err("User Not Found in My GMute List")
         return
     await asyncio.gather(
-        GMUTE_USER_BASE.delete_one({"firstname": firstname, "user_id": user_id}),
+        GMUTE_USER_BASE.delete_one(found),
         msg.edit(
             r"\\**#UnGMuted_User**//"
             f"\n\n**First Name:** [{firstname}](tg://user?id={user_id})\n"
             f"**User ID:** `{user_id}`"
         ),
     )
-    chats = (
-        [msg.chat] if msg.client.is_bot else await msg.client.get_common_chats(user_id)
-    )
+    chats = await userge.get_common_chats(user_id)
     for chat in chats:
         try:
             await chat.unban_member(user_id)
@@ -190,7 +186,7 @@ async def gmute_at_entry(msg: Message):
             await asyncio.gather(
                 msg.client.restrict_chat_member(chat_id, user_id, ChatPermissions()),
                 msg.reply(
-                    r"\\**#Userge_Antispam**//"
+                    r"\\**#𝑿_Antispam**//"
                     "\n\nGlobally Muted User Detected in this Chat.\n\n"
                     f"**User:** [{first_name}](tg://user?id={user_id})\n"
                     f"**ID:** `{user_id}`\n**Reason:** `{gmuted['reason']}`\n\n"
