@@ -68,7 +68,7 @@ REPO_X = InlineQueryResultArticle(
         [
             [
                 InlineKeyboardButton(
-                    "🔥 USERGE-X Repo", url="https://github.com/code-rgb/USERGE-X"
+                    "🔥 USERGE-X Repo", url="https://github.com/FLAMEPOSEIDON/USERGE-X"
                 ),
                 InlineKeyboardButton(
                     "🚀 Deploy USERGE-X",
