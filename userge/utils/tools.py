@@ -77,8 +77,6 @@ def post_to_telegraph(a_title: str, content: str) -> str:
     post_client.create_api_token(auth_name)
     post_page = post_client.post(
         title=a_title,
-        author=auth_name,
-        author_url="https://t.me/x_xtests",
         text=content,
     )
     return post_page["url"]
