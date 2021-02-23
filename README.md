@@ -1,5 +1,5 @@
 
-<h2 align="center"><b>Owner: <a href="https://telegram.dog/FLAMEPOSEIDON">𝚂𝚢𝚗𝚝𝚊𝚡 ░ CHANDU</a></b></h2>
+<h2 align="center"><b>Owner: <a href="https://telegram.dog/FLAMEPOSEIDON">CHANDU ░ Syntax</a></b></h2>
 <br>
 <p align="center">
    <a href="https://github.com/FLAMEPOSEIDON/USERGE-X"><img src="https://i.imgur.com/69w94F4.jpg" alt="Userge-x" width=400px></a>
