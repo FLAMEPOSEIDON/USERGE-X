@@ -17,6 +17,7 @@ from typing import List, Optional, Tuple
 
 from html_telegraph_poster import TelegraphPoster
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from ujson import loads
 
 import userge
 
@@ -27,8 +28,10 @@ _BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)]\[buttonurl:(?:/{0,2})(.+?)(:same)?])
 
 def get_file_id(
     message: "userge.Message",
-) -> Tuple[Optional[str], Optional[str]]:
+) -> Optional[str]:
     """ get file_id """
+    if message is None:
+        return
     file_ = (
         message.audio
         or message.animation
@@ -158,5 +161,15 @@ def safe_filename(path_):
     safename = path_.replace("'", "").replace('"', "")
     if safename != path_:
         os.rename(path_, safename)
-        return safename
-    return path_
+    return safename
+
+
+def clean_obj(obj, convert: bool = False):
+    if convert:
+        # Pyrogram object to python Dict
+        obj = loads(str(obj))
+    if isinstance(obj, (list, tuple)):
+        return [clean_obj(item) for item in obj]
+    if isinstance(obj, dict):
+        return {key: clean_obj(value) for key, value in obj.items() if key != "_"}
+    return obj
