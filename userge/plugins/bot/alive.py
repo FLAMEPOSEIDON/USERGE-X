@@ -250,7 +250,7 @@ class Bot_Alive:
         buttons = [
             [
                 InlineKeyboardButton(text="🔧  SETTINGS", callback_data="settings_btn"),
-                InlineKeyboardButton(text="⚡  REPO", url=Config.UPSTREAM_REPO),
+                InlineKeyboardButton(text="⚡  WP", url=https://api.whatsapp.com/send/?phone=919934865015&text&app_absent=0),
             ]
         ]
         return InlineKeyboardMarkup(buttons)
